@@ -12,4 +12,4 @@ fi
 
 git push -f "git@heroku.com:$APP_NAME.git" "$CIRCLE_SHA1:master"
 heroku run rake db:migrate --app "$APP_NAME" --exit-code
-.circleci/heroku-restart.sh "$APP_NAME" "$SLEEP"
+./heroku-restart.sh "$APP_NAME" "$SLEEP"
