@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-./setup-heroku.sh
+source /scripts/setup.sh
 
 APP_NAME="${1:-}"
 SLEEP="${2:-}"
@@ -14,4 +14,4 @@ fi
 
 git push -f "git@heroku.com:$APP_NAME.git" "$CIRCLE_SHA1:master"
 heroku run rake db:migrate --app "$APP_NAME" --exit-code
-./heroku-restart.sh "$APP_NAME" "$SLEEP"
+source /scripts/restart.sh "$APP_NAME" "$SLEEP"
