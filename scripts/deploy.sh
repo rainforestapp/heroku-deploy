@@ -13,5 +13,13 @@ if [[ -z $APP_NAME ]]; then
 fi
 
 git push -f "git@heroku.com:$APP_NAME.git" "$CIRCLE_SHA1:master"
-heroku run rake db:migrate --app "$APP_NAME" --exit-code
+
+set +u
+if [[ -z $HEROKU_SKIP_DB_MIGRATE ]]; then
+  heroku run rake db:migrate --app "$APP_NAME" --exit-code
+else
+  echo "skipping 'db:migrate' with HEROKU_SKIP_DB_MIGRATE..."
+fi
+set -u
+
 source /scripts/restart.sh "$APP_NAME" "$SLEEP"
