@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+./setup-heroku.sh
+
 APP_NAME="${1:-}"
 SLEEP="${2:-}"
 

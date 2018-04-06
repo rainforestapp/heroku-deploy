@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+if [ -f ~/.netrc ] && grep -qx "machine api.heroku.com" ~/.netrc ; then
+  exit 0
+fi
+
 cat > ~/.netrc << EOF
 machine api.heroku.com
   login $HEROKU_LOGIN

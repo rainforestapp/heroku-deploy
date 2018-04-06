@@ -10,6 +10,8 @@ if [[ -z $APP_NAME ]]; then
   exit 1
 fi
 
+./setup-heroku.sh
+
 for i in {1..5}; do
     echo "Try #$i"
     echo "Waiting ${SLEEP} seconds..."
